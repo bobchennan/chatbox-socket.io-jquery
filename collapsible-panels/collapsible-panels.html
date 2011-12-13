@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jQuery实现整可收缩面板-http://www.chenlublog.com</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	//hide message_body after the first one
+	$(".message_list .message_body:gt(0)").hide();
+	
+	//hide message li after the 5th
+	$(".message_list li:gt(4)").hide();
+
+	
+	//toggle message_body
+	$(".message_head").click(function(){
+		$(this).next(".message_body").slideToggle(500)
+		return false;
+	});
+
+	//collapse all messages
+	$(".collpase_all_message").click(function(){
+		$(".message_body").slideUp(500)
+		return false;
+	});
+
+	//show all messages
+	$(".show_all_message").click(function(){
+		$(this).hide()
+		$(".show_recent_only").show()
+		$(".message_list li:gt(4)").slideDown()
+		return false;
+	});
+
+	//show recent messages only
+	$(".show_recent_only").click(function(){
+		$(this).hide()
+		$(".show_all_message").show()
+		$(".message_list li:gt(4)").slideUp()
+		return false;
+	});
+
+});
+</script>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	margin: 10px auto;
+	width: 570px;
+	font: 75%/120% Arial, Helvetica, sans-serif;
+}
+p {
+	padding: 0 0 1em;
+}
+/* message display page */
+.message_list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 383px;
+}
+.message_list li {
+	padding: 0;
+	margin: 0;
+	background: url(message-bar.gif) no-repeat;
+}
+.message_head {
+	padding: 5px 10px;
+	cursor: pointer;
+	position: relative;
+}
+.message_head .timestamp {
+	color: #666666;
+	font-size: 95%;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+.message_head cite {
+	font-size: 100%;
+	font-weight: bold;
+	font-style: normal;
+}
+.message_body {
+	padding: 5px 10px 15px;
+}
+.collapse_buttons {
+	text-align: right;
+	border-top: solid 1px #e4e4e4;
+	padding: 5px 0;
+	width: 383px;
+}
+.collapse_buttons a {
+	margin-left: 15px;
+	float: right;
+}
+.show_all_message {
+	background: url(images/tall-down-arrow.gif) no-repeat right center;
+	padding-right: 12px;
+}
+.show_recent_only {
+	display: none;
+	background: url(images/tall-up-arrow.gif) no-repeat right center;
+	padding-right: 12px;
+}
+.collpase_all_message {
+	background: url(images/collapse-all.gif) no-repeat right center;
+	padding-right: 12px;
+	color: #666666;
+}
+</style>
+</head><body>
+<ol class="message_list">
+	<li>
+		<p class="message_head"><cite>chenlublog:</cite> <span class="timestamp">1 minute ago</span></p>
+		<div style="display: block;" class="message_body">
+			<p>Hello Friends,<br>
+				<br>
+				This is the latest message display. The rest are collapsed by default</p>
+		</div>
+	</li>
+	<li>
+		<p class="message_head"><cite>nick:</cite> <span class="timestamp">2 minutes ago</span></p>
+		<div style="display: block;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+	<li>
+		<p class="message_head"><cite>someone:</cite> <span class="timestamp">1 day ago</span></p>
+		<div style="display: none;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+	<li>
+		<p class="message_head"><cite>nick:</cite> <span class="timestamp">2 days ago</span></p>
+		<div style="display: none;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+	<li>
+		<p class="message_head"><cite>someone:</cite> <span class="timestamp">3 days ago</span></p>
+		<div style="display: none;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+	<li style="display: none;">
+		<p class="message_head"><cite>nick:</cite> <span class="timestamp">5 days ago</span></p>
+		<div style="display: none;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+	<li style="display: none;">
+		<p class="message_head"><cite>someone:</cite> <span class="timestamp">6 days ago</span></p>
+		<div style="display: none;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+	<li style="display: none;">
+		<p class="message_head"><cite>nick:</cite> <span class="timestamp">7 days ago</span></p>
+		<div style="display: none;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+	<li style="display: none;">
+		<p class="message_head"><cite>someone:</cite> <span class="timestamp">8 days ago</span></p>
+		<div style="display: none;" class="message_body">
+			<p>message here</p>
+		</div>
+	</li>
+</ol>
+<p class="collapse_buttons"><a href="#" class="show_all_message">显示所有面板(9)</a> <a href="#" class="show_recent_only">只显示5条信息</a> <a href="#" class="collpase_all_message">收缩全部</a></p>
+<div align="center">
+<script type="text/javascript"><!--
+google_ad_client = "pub-4457581427635576";
+/* 468x60, 创建于 11-4-9 */
+google_ad_slot = "3806955309";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div style="padding-top: 10px; clear: both; text-align: center; font-size: 12px; line-height: 21px;"> 本代码由<a href="http://www.chenlublog.com/">晨露博客</a>设计整理<br>
+<a title="晨露博客" href="http://www.chenlublog.com">博客首页</a>   <a title="生活感悟" href="http://www.chenlublog.com/post/living_sentiment.html">生活感悟</a>   <a title="ASP、PHP、JavaScript开发技巧,开发指南,程序发布" href="http://www.chenlublog.com/post/network_programming.html">网络编程</a> 　<a title="Google,Baidu搜索引擎优化,搜索技术" href="http://www.chenlublog.com/post/search_engine.html">搜索引擎</a>　 <a title="互联网技术,网络安全,网络发展" href="http://www.chenlublog.com/post/Internet.html">互联网络</a> 　<a title="网络新闻,网络动态" href="http://www.chenlublog.com/post/field_news.html">业界动态</a>   <a title="网站架设,网站优化,维护管理" href="http://www.chenlublog.com/post/website_build.html">网站建设</a>   <a title="电脑技术,软件硬件,科技前沿" href="http://www.chenlublog.com/post/it_tech.html">IT技术</a>   <a title="大学生活,专业知识,我的分享" href="http://www.chenlublog.com/post/university_life.html">我的大学生活</a>
+</div>
+</body></html>

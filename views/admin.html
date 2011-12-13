@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>cnx测试</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<link rel="stylesheet" href="/css/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/css/jquery.ui.chatbox.css" type="text/css"/>
+		<script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.ui.chatbox.js"></script>
+		<script type="text/javascript" src="http://127.0.0.1:8000/socket.io/socket.io.js"></script>
+	</head>
+	<body>
+		<script>
+			$(function(){
+				$("#tabs").tabs();
+			});
+		</script>
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">默认1</a></li>
+				<li><a href="#tabs-2">默认2</a></li>
+			</ul>
+			<div id="tabs-1">
+				<div id="box1">
+					<div id="msg1" style="overflow:hidden;width:780px;"></div> 
+					<div id="msg1_end" style="height:0px; overflow:hidden"></div>					
+				</div>
+				<textarea id="area1"></textarea>
+				<button id="but1">发送</button>
+			</div>
+			<div id="tabs-2">
+			</div>
+		</div>
+		<style type="text/css">
+			#tabs {width:960px;border-style:dashed;border:2px;bottom:30px;}
+			#box1 {width:800px;bottom:35px;height:70%;overflow:auto;}
+			#area1 {width:800px;}
+		</style>
+		<script>
+			$(document).ready(function(){
+				var socket=io.connect('http://127.0.0.1:8000');
+				socket.emit('new user','admin');
+				socket.on('from server',function(data){
+					var user=data['id'];
+					var msg=data['msg'];
+					$("#msg1").append("<p>"+user+" said: "+msg+"</p>");
+					msg1_end.scrollIntoView();
+				});
+				$("#but1").click(function(){
+					socket.emit('from client',{id:"admin",msg:$("#area1").val()});
+					$("#msg1").append("<p> 广播信息: "+$("#area1").val()+"</p>");
+					area1.value='';
+					msg1_end.scrollIntoView();
+				});
+			});
+		</script>
+	</body>
+</html>
+		
